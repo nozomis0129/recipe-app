@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<style>
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-image: url("{% static 'recipes/images/kitchen.jpg' %}");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+  }
+  .container {
+    max-width: 900px;
+    margin: 70px auto;
+    padding: 20px;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 5px;
+  }
+  .img-and-text {
+    display: flex;
+    width: 800px;
+    margin: 0 auto 40px auto;
+  }
+  .img img {
+    border-radius: 5px;
+  }
+  .text {
+    padding-top: 280px;
+    padding-left: 20px;
+  }
+  .text-container {
+    text-align: left;
+    margin: 20px auto;
+  }
+  .attribute {
+    font-weight: bold;
+  }
+  @media all and (max-width: 900px) {
+    .container {
+      text-align: center;
+      width: 80%;
+    }
+    .img-and-text {
+      display: flex;
+      flex-direction: column;
+      width: auto;
+      justify-content: center;
+    }
+    .text {
+      padding-top: 0;
+      padding-left: 0;
+    }
+    .text-container {
+      text-align: center;
+    }
+  }
+</style>
+<head>
+  <title>Recipe App</title>
+</head>
+<body>
+  <div class="container">
+    <div class="img-and-text">
+      <div class="img">
+        <img src="{{object.pic.url}}" width="400px" height="400px" object-fit="cover"/>
+      </div>
+      <div class="text">
+        <h2>{{object.name}}</h2>
+        <p>Cooking Time: {{object.cooking_time}} mins</p>
+        <p>Difficulty: {{object.calculate_difficulty}}</p>
+      </div>
+    </div>
+    
+    <div class="text-container">
+      <h4>Ingredients:</h4>
+      <p>{{object.ingredients}}</p>
+      <h4>Description:</h4>
+      <p>{{object.description}}</p>
+    </div>
+  </div>
+</body>
+</html>
