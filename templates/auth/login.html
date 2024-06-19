@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe App</title>
+</head>
+<body>
+  <style>
+    body {
+      background-image: url("{% static 'recipes/images/kitchen.jpg' %}");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .message-container {
+      width: 550px;
+      height: 300px;
+      border-radius: 5px;
+      background-color: #ffffff;
+      margin: 250px auto;
+    }
+    h1 {
+      padding-top: 30px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      margin: 30px auto;
+    }
+    button {
+      background-color: black;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 5px;
+      border: none;
+      width: 60px;
+      padding: 6px 7px;
+      margin: 30px auto;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: lightgray;
+      color: black;
+    }
+  </style>
+  <div class="message-container">
+    <h1>Login</h1>
+    {% if error_message %}
+    {{ error_message }}
+    {% endif %}
+
+    <form action="" method="POST">
+      {% csrf_token %}
+      {{form}}
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</body>
+</html>

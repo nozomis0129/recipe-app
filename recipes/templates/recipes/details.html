@@ -2,12 +2,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
+  * {
+    box-sizing: border-box;
+  }
   body {
     font-family: Arial, Helvetica, sans-serif;
     background-image: url("{% static 'recipes/images/kitchen.jpg' %}");
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+  .navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0.6;
+    z-index: 1;
+  }
+  .navbar-item {
+    float: left;
+  }
+  .navbar-item a{
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 16px 18px;
+    text-decoration: none;
+  }
+  .navbar-item a:hover {
+    background-color: lightgrey;
+  }
+  #logo img {
+    width: 93px;
   }
   .container {
     max-width: 900px;
@@ -16,6 +48,7 @@
     justify-content: center;
     background-color: #ffffff;
     border-radius: 5px;
+    position: relative;
   }
   .img-and-text {
     display: flex;
@@ -24,10 +57,13 @@
   }
   .img img {
     border-radius: 5px;
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
   }
   .text {
     padding-top: 280px;
-    padding-left: 20px;
+    padding-left: 80px;
   }
   .text-container {
     text-align: left;
@@ -35,6 +71,21 @@
   }
   .attribute {
     font-weight: bold;
+  }
+  .back-button {
+    background-color: black;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 6px 7px;
+    border-radius: 5px;
+  }
+  .back-button:hover {
+    background-color: lightgray;
+    color: black;
+  }
+  .button-case{
+    width: 40px;
+    margin: 20px auto;
   }
   @media all and (max-width: 900px) {
     .container {
@@ -46,6 +97,11 @@
       flex-direction: column;
       width: auto;
       justify-content: center;
+    }
+    .img img {
+      width: 350px;
+      height: 350px;
+      object-fit: cover;
     }
     .text {
       padding-top: 0;
@@ -60,10 +116,14 @@
   <title>Recipe App</title>
 </head>
 <body>
+  <ul class="navbar">
+    <li class="navbar-item" id="logo"><img src="{% static 'recipes/images/my-recipes-logo.png' %}"></li>
+    <li class="navbar-item"><a href="{%url 'logout' %}"> Logout </a></li>
+  </ul>
   <div class="container">
     <div class="img-and-text">
       <div class="img">
-        <img src="{{object.pic.url}}" width="400px" height="400px" object-fit="cover"/>
+        <img src="{{object.pic.url}}"/>
       </div>
       <div class="text">
         <h2>{{object.name}}</h2>
@@ -78,6 +138,7 @@
       <h4>Description:</h4>
       <p>{{object.description}}</p>
     </div>
+    <div class="button-case"><a href="{%url 'recipes:list' %}" class="back-button">Back</a></div>
   </div>
 </body>
 </html>
