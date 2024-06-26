@@ -1,5 +1,6 @@
 from django.test import TestCase
 from .models import Recipe
+from .forms import RecipeSearchForm
 
 # Create your tests here.
 
@@ -35,3 +36,17 @@ class RecipeModelTest(TestCase):
     def get_absolute_url(self):
         recipe = Recipe.objects.get(id=1)
         self.assertEqual(recipe.get_absolute_url(), "/list/1")
+
+
+class RecipeSearchTest(TestCase):
+    def test_form_renders_recipe_difficulty_input(self):
+        form = RecipeSearchForm()
+        self.assertIn("recipe_diff", form.as_p())
+
+    def test_form_renders_chart_type_input(self):
+        form = RecipeSearchForm()
+        self.assertIn("chart_type", form.as_p())
+
+    def test_form_invalid_data(self):
+        form = RecipeSearchForm(data={"recipe_diff": "", "chart_type": ""})
+        self.assertFalse(form.is_valid())

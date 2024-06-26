@@ -1,0 +1,87 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      background-image: url("{% static 'recipes/images/dining-table.jpg' %}");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+    }
+    .navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0.6;
+  }
+    .navbar-item {
+      float: left;
+    }
+    .navbar-item a{
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 16px 18px;
+      text-decoration: none;
+    }
+    .navbar-item a:hover {
+      background-color: lightgrey;
+    }
+    #logo img {
+      width: 93px;
+    }
+    .container {
+      background-color: #ffffff;
+      border-radius: 5px;
+      margin-top: 100px;
+      padding: 30px;
+    }
+    .table{
+      width: max-content;
+      margin: 10px auto;
+    }
+  </style>
+  <title>Recipe App</title>
+</head>
+<body>
+  <ul class="navbar">
+    <li class="navbar-item" id="logo"><img src="{% static 'recipes/images/my-recipes-logo.png' %}"></li>
+    <li class="navbar-item"><a href="{%url 'recipes:list' %}">Recipe List</a></li>
+    <li class="navbar-item"><a href="{%url 'logout' %}"> Logout </a></li>
+  </ul>
+  <div class="container">
+    <h1>Search Form</h1>
+    <form action="" method="POST">
+      {% csrf_token %}
+      {{ form }}
+      <button type="submit">search</button>
+    </form>
+    <br>
+    {% if recipes_df %}
+    <div class="table">
+      {{recipes_df|safe}}
+    </div>
+    <br>
+    <img src="data:image/png;base64, {{chart|safe}}">
+    {% else %}
+    <h3>no data</h3>
+    {% endif%}
+  </div>
+</body>
+</html>
