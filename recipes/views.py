@@ -1,8 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .models import Recipe
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Recipe
-from .forms import RecipeSearchForm
+from .forms import RecipeSearchForm, RecipeForm
 import pandas as pd
 from .utils import get_chart
 
@@ -87,3 +87,20 @@ def search_recipes(request):
         "chart": chart,
     }
     return render(request, "recipes/search.html", context)
+
+
+def add_recipe(request):
+    if request.method == "POST":
+        form = RecipeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(
+                "recipes:recipe_list"
+            )  # Redirect to the recipe list after saving
+    else:
+        form = RecipeForm()
+    return render(request, "add_recipe.html", {"form": form})
+
+
+def about(request):
+    return render(request, "recipes/about.html")

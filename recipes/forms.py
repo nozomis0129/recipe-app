@@ -1,4 +1,5 @@
 from django import forms
+from .models import Recipe
 
 # specify choices as a tuple
 CHART__CHOICES = (
@@ -18,3 +19,9 @@ DIFF__CHOICES = (
 class RecipeSearchForm(forms.Form):
     recipe_diff = forms.ChoiceField(choices=DIFF__CHOICES)
     chart_type = forms.ChoiceField(choices=CHART__CHOICES)
+
+
+class RecipeForm(forms.ModelForm):
+    class Meta:
+        model = Recipe
+        fields = ["name", "cooking_time", "ingredients", "description", "pic"]

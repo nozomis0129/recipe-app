@@ -1,0 +1,239 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe App</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      background-image: url("{% static 'recipes/images/dining-table.jpg' %}");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+    .container {
+      background-color: #ffffff;
+      border-radius: 5px;
+      width: 70%;
+      margin: 90px auto;
+      padding: 30px;
+    }
+    .navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0.6;
+  }
+    .navbar-item {
+      float: left;
+    }
+    .navbar-item a{
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 16px 18px;
+      text-decoration: none;
+    }
+    .navbar-item a:hover {
+      background-color: lightgrey;
+    }
+    #logo img {
+      width: 93px;
+    }
+    .Form {
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 720px;
+    }
+    @media screen and (max-width: 480px) {
+      .Form {
+        margin-top: 40px;
+      }
+    }
+    .Form-Item {
+      border-top: 1px solid #ddd;
+      padding-top: 24px;
+      padding-bottom: 24px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+    @media screen and (max-width: 480px) {
+      .Form-Item {
+        padding-left: 14px;
+        padding-right: 14px;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        flex-wrap: wrap;
+      }
+    }
+    .Form-Item:nth-child(5) {
+      border-bottom: 1px solid #ddd;
+    }
+    .Form-Item-Label {
+      width: 100%;
+      max-width: 248px;
+      letter-spacing: 0.05em;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    @media screen and (max-width: 480px) {
+      .Form-Item-Label {
+        max-width: inherit;
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+      }
+    }
+    .Form-Item-Label.isMsg {
+      margin-top: 8px;
+      margin-bottom: auto;
+    }
+    @media screen and (max-width: 480px) {
+      .Form-Item-Label.isMsg {
+        margin-top: 0;
+      }
+    }
+    .Form-Item-Label-Required {
+      border-radius: 6px;
+      margin-right: 8px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      width: 48px;
+      display: inline-block;
+      text-align: center;
+      background: #5bc8ac;
+      color: #fff;
+      font-size: 14px;
+    }
+    @media screen and (max-width: 480px) {
+      .Form-Item-Label-Required {
+        border-radius: 4px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        width: 32px;
+        font-size: 10px;
+      }
+    }
+    .Form-Item-Input {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-left: 40px;
+      padding-left: 1em;
+      padding-right: 1em;
+      height: 48px;
+      flex: 1;
+      width: 100%;
+      max-width: 410px;
+      background: #eaedf2;
+      font-size: 18px;
+    }
+    @media screen and (max-width: 480px) {
+      .Form-Item-Input {
+        margin-left: 0;
+        margin-top: 18px;
+        height: 40px;
+        flex: inherit;
+        font-size: 15px;
+      }
+    }
+    .Form-Item-Textarea {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      margin-left: 40px;
+      padding-left: 1em;
+      padding-right: 1em;
+      height: 216px;
+      flex: 1;
+      width: 100%;
+      max-width: 410px;
+      background: #eaedf2;
+      font-size: 18px;
+    }
+    @media screen and (max-width: 480px) {
+      .Form-Item-Textarea {
+        margin-top: 18px;
+        margin-left: 0;
+        height: 200px;
+        flex: inherit;
+        font-size: 15px;
+      }
+    }
+    .Form-Btn {
+      border-radius: 6px;
+      margin-top: 32px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      width: 280px;
+      display: block;
+      letter-spacing: 0.05em;
+      background: #5bc8ac;
+      color: #fff;
+      font-weight: bold;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    @media screen and (max-width: 480px) {
+      .Form-Btn {
+        margin-top: 24px;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        width: 160px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <ul class="navbar">
+    <li class="navbar-item" id="logo"><img src="{% static 'recipes/images/my-recipes-logo.png' %}"></li>
+    <li class="navbar-item"><a href="{%url 'recipes:about' %}">About</a></li>
+    <li class="navbar-item"><a href="{%url 'recipes:list' %}">Recipe List</a></li>
+    <li class="navbar-item"><a href="{%url 'recipes:search' %}">Search</a></li>
+    <li class="navbar-item"><a href="{%url 'logout' %}"> Logout </a></li>
+  </ul>
+  <div class="container">
+    <h2>Add Recipe</h2>
+    <div class="Form">
+      {% csrf_token %}
+      <div class="Form-Item">
+        <p class="Form-Item-Label">Recipe Name</p>
+        <input type="text" class="Form-Item-Input">
+      </div>
+      <div class="Form-Item">
+        <p class="Form-Item-Label">Cooking Time</p>
+        <input type="text" class="Form-Item-Input" placeholder="In minutes">
+      </div>
+      <div class="Form-Item">
+        <p class="Form-Item-Label isMsg">Ingredients</p>
+        <textarea class="Form-Item-Textarea"></textarea>
+      </div>
+      <div class="Form-Item">
+        <p class="Form-Item-Label">Description</p>
+        <textarea class="Form-Item-Textarea"></textarea>
+      </div>
+      <div class="Form-Item">
+        <label for="id_picture">Picture:</label>
+        <input type="file" name="pic" class="form-control-file">
+      </div>
+      <button type="submit" class="Form-Btn">Add Recipe</button>
+    </div>
+  </div>
+</body>
+</html>

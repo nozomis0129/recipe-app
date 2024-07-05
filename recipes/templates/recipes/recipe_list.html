@@ -101,7 +101,9 @@
 <body>
   <ul class="navbar">
     <li class="navbar-item" id="logo"><img src="{% static 'recipes/images/my-recipes-logo.png' %}"></li>
+    <li class="navbar-item"><a href="{%url 'recipes:about' %}">About</a></li>
     <li class="navbar-item"><a href="{%url 'recipes:search' %}">Search</a></li>
+    <li class="navbar-item"><a href="{%url 'recipes:add_recipe' %}">Add Recipe</a></li>
     <li class="navbar-item"><a href="{%url 'logout' %}">Logout</a></li>
   </ul>
   <h1 class="title">Recipes</h1>

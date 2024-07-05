@@ -1,0 +1,114 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe App</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      background-image: url("{% static 'recipes/images/dining-table.jpg' %}");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+    }
+    .navbar {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #ffffff;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0.6;
+    }
+    .navbar-item {
+        float: left;
+      }
+    .navbar-item a{
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 16px 18px;
+      text-decoration: none;
+    }
+    .navbar-item a:hover {
+      background-color: lightgrey;
+    }
+    #logo img {
+      width: 93px;
+    }
+    .container {
+      background-color: #ffffff;
+      border-radius: 5px;
+      width: 70%;
+      margin-top: 120px;
+      padding: 30px;
+    }
+    .text {
+      width: 80%;
+      margin: 10px auto;
+    }
+    .link {
+      list-style: none;
+      text-align: left;
+      width: fit-content;
+      margin: 10px auto;
+    }
+    .link li a {
+      text-decoration: none;
+      position: relative;
+      color: black;
+    }
+    .link li a::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -3px;
+      width: 0;
+      height: 1px;
+      background-color: black;
+      transition: 0.3s all;
+    }
+    .link li a:hover::after {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <ul class="navbar">
+    <li class="navbar-item" id="logo"><img src="{% static 'recipes/images/my-recipes-logo.png' %}"></li>
+    <li class="navbar-item"><a href="{%url 'recipes:list' %}">Recipe List</a></li>
+    <li class="navbar-item"><a href="{%url 'recipes:search' %}">Search</a></li>
+    <li class="navbar-item"><a href="{%url 'recipes:add_recipe' %}">Add Recipe</a></li>
+    <li class="navbar-item"><a href="{%url 'logout' %}"> Logout </a></li>
+  </ul>
+  <div class="container">
+    <h1>About Me</h1>
+    <div class="text">
+      <p>Hello, I'm Nozomi Sugezawa, a customer-centered Web Developer with over 10 years of experience in the Hospitality industry.<br>
+         I excel in web design, creative coding, and user experience, supported by a degree in Arts and Literature and certification in Full Stack Development.</p>
+    </div>
+    <br>
+    <ul class="link">
+      <li>GitHub: <a href="https://github.com/nozomis0129" target="_blank">Check out some of my code on GitHub</a></li>
+      <br>
+      <li>Portfolio: <a href="https://nozomis0129.github.io/portfolio-site/index.html" target="_blank">Visit my Portfolio site</a></li>
+      <br>
+      <li>Contact: <a href="mailto:nzm020129@gmail.com">nzm020129@gmail.com</a></li>
+    </ul>
+    <br>
+  </div>
+</body>
+</html>
