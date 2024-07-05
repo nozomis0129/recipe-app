@@ -30,7 +30,11 @@ SECRET_KEY = os.environ.get(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [
+    "https://recipe-app-333-faa2d890469a.herokuapp.com/",
+    "localhost",
+    "127.0.0.1",
+]
 
 
 # Application definition
