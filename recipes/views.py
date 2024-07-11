@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .models import Recipe
 from django.views.generic import ListView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from .forms import RecipeSearchForm, RecipeForm
 import pandas as pd
 from .utils import get_chart
@@ -22,7 +24,10 @@ class RecipeDetailView(LoginRequiredMixin, DetailView):
     template_name = "recipes/details.html"
 
 
+# Keep protected
+@login_required
 def search_recipes(request):
+    # Initialize the search form
     form = RecipeSearchForm(request.POST or None)
     recipes_df = None
     recipe_diff = None
@@ -89,17 +94,18 @@ def search_recipes(request):
     return render(request, "recipes/search.html", context)
 
 
+@login_required
 def add_recipe(request):
     if request.method == "POST":
         form = RecipeForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect(
-                "recipes:recipe_list"
-            )  # Redirect to the recipe list after saving
+            messages.success(request, "Recipe has been created!")
+            # Redirect to the add recipe page after saving
+            return redirect("recipes:add_recipe")
     else:
         form = RecipeForm()
-    return render(request, "add_recipe.html", {"form": form})
+    return render(request, "recipes/add_recipe.html", {"form": form})
 
 
 def about(request):
